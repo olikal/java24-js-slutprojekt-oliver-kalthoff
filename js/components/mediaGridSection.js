@@ -8,7 +8,7 @@ function createMediaGridSection(title, movies) {
   heading.textContent = title;
 
   const grid = document.createElement("div");
-  grid.classList.add("search-results");
+  grid.classList.add("media-grid");
 
   movies.forEach((movie) => {
     const card = createMediaCard(movie);
