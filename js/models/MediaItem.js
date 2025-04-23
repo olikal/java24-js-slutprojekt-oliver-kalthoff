@@ -1,3 +1,4 @@
+// Klass för att skapa objekt med formaterad data från API
 class MediaItem {
   constructor({
     title,

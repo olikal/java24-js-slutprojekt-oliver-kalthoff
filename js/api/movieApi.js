@@ -21,6 +21,7 @@ async function fetchMovies(endpoint) {
   }
 }
 
+// Hämtar detailjer om enskilda mediaobjekt
 async function fetchDetails(endpoint) {
   const url = `${API_BASE_URL}${endpoint}?language=en`;
 

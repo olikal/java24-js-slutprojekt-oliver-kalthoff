@@ -5,6 +5,7 @@ import { sortResults } from "../utils/sort.js";
 import { elements } from "../utils/domElements.js";
 import { prepareView } from "../utils/prepareView.js";
 
+// Renderar sökresultat baserat på användarens sökning
 async function renderSearchResults(query) {
   prepareView();
 
@@ -28,6 +29,7 @@ async function renderSearchResults(query) {
     return;
   }
 
+  // Filtrerar om användaren valt att använda filter(movie/tv, person)
   let filtered = data;
   if (filter === "movie") {
     filtered = data.filter(
@@ -45,6 +47,7 @@ async function renderSearchResults(query) {
   const heading = document.createElement("h2");
   heading.textContent = `Search results for "${query}"`;
 
+  // Dropdown för sortering (se funktion längre ner!)
   const sortSelect = createSortSelect();
 
   const headingWrapper = document.createElement("div");
@@ -56,10 +59,12 @@ async function renderSearchResults(query) {
   const container = document.createElement("div");
   container.classList.add("search-results");
 
+  // Renderar kort utefter sortering
   renderCards(container, sortResults(filtered, sortSelect.value));
 
   elements.main.append(container);
 
+  // sorterar om vid byte av sortering
   sortSelect.addEventListener("change", () => {
     const sorted = sortResults(filtered, sortSelect.value);
     container.innerHTML = "";
@@ -81,6 +86,7 @@ function createSortSelect() {
   return select;
 }
 
+// Renderar kort beroende på typ
 function renderCards(container, items) {
   items.forEach((item) => {
     let card;

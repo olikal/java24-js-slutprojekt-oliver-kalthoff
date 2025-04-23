@@ -3,6 +3,7 @@ import { getTypeIcon } from "../utils/typeIcon.js";
 import { renderMediaDetails } from "../views/renderMediaDetails.js";
 
 function createMediaCard(mediaData) {
+  // Skapar MediaItem-objekt för att samla datan från API (OOP)
   const media = new MediaItem(mediaData);
 
   const article = document.createElement("article");
@@ -18,6 +19,7 @@ function createMediaCard(mediaData) {
     <p><span class="hot">🔥</span> ${media.popularity}</p>
   `;
 
+  // Går till details för vald media när man klickar
   article.addEventListener("click", () => {
     renderMediaDetails(mediaData.id, media.type);
   });

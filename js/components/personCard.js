@@ -19,6 +19,7 @@ function createPersonCard(person, character = "") {
     </div>
   `;
 
+  // Går till personens details vid klick
   article.addEventListener("click", () => {
     renderPersonDetails(person.id);
   });

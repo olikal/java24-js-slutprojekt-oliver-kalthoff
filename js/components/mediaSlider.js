@@ -1,16 +1,17 @@
 import { createMediaCard } from "./mediaCard.js";
 
+// MediaSlider för visning av "netflix" sliders
 function createMediaSlider(title, movies) {
-  const section = document.createElement('section');
-  section.classList.add('movie-row');
+  const section = document.createElement("section");
+  section.classList.add("movie-row");
 
-  const heading = document.createElement('h2');
+  const heading = document.createElement("h2");
   heading.textContent = title;
 
-  const slider = document.createElement('div');
-  slider.classList.add('movie-slider');
+  const slider = document.createElement("div");
+  slider.classList.add("movie-slider");
 
-  movies.forEach(movie => {
+  movies.forEach((movie) => {
     const card = createMediaCard(movie);
     slider.append(card);
   });
@@ -19,4 +20,4 @@ function createMediaSlider(title, movies) {
   return section;
 }
 
-export {createMediaSlider};
+export { createMediaSlider };

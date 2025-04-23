@@ -192,6 +192,7 @@ header.hide-header {
   border: 1px solid #ccc;
   transition: transform 0.3s ease;
   position: relative;
+  cursor: pointer;
 }
 
 .media-card:hover {
@@ -239,6 +240,7 @@ header.hide-header {
   border: 1px solid #ccc;
   transition: transform 0.3s ease;
   position: relative;
+  cursor: pointer;
 }
 
 .person-card:hover {

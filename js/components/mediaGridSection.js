@@ -1,5 +1,6 @@
 import { createMediaCard } from "./mediaCard.js";
 
+// MediaGrid för visning av toplistor
 function createMediaGridSection(title, movies) {
   const section = document.createElement("section");
   section.classList.add("media-grid-section");

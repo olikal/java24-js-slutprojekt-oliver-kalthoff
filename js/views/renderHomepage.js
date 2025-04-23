@@ -16,8 +16,8 @@ async function initHomepage() {
   renderHomepageContent(data);
 }
 
+// Renderar tre "netflix" liknande sliders på startsidan
 function renderHomepageContent({ popularMovies, upcomingMovies, popularTV }) {
-  elements.main.innerHTML = "";
   elements.main.append(
     createMediaSlider("Popular Movies", popularMovies),
     createMediaSlider("Upcoming Movies", upcomingMovies),

@@ -32,6 +32,8 @@ async function renderMediaDetails(id, type = "movie") {
     </div>
   `;
 
+  // Filtrerar bort actors utan bild och visar top5
+  // Top5 = visar 0-4, baserat på TMDBs 'order' där 0 är huvudperson
   const cast = credits?.cast
     ?.filter((member) => member.profile_path)
     ?.sort((a, b) => a.order - b.order)
@@ -55,6 +57,7 @@ async function renderMediaDetails(id, type = "movie") {
     castSection.append(heading, slider);
   }
 
+  // Tar första youtube-trailern från videos-arrayen
   const trailer = videos.find(
     (video) => video.type === "Trailer" && video.site === "YouTube"
   );
@@ -71,6 +74,7 @@ async function renderMediaDetails(id, type = "movie") {
   }
 }
 
+// Formaterar media-info från API-svaret
 function extractMediaInfo(data) {
   return {
     title: data.title || data.name,
