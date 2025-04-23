@@ -3,20 +3,24 @@ import { createPersonCard } from "../components/personCard.js";
 import { prepareView } from "../utils/prepareView.js";
 import { elements } from "../utils/domElements.js";
 
-async function renderMediaDetails(id, type = 'movie') {
+async function renderMediaDetails(id, type = "movie") {
   prepareView();
 
   const data = await fetchDetails(`/${type}/${id}`);
-  if (!data) {
-    elements.main.innerHTML = "<p>Something went wrong. Please try again later.</p>";
+  const credits = await fetchDetails(`/${type}/${id}/credits`);
+  const videos = await getMediaVideos(id, type);
+
+  if (!data || !credits || !videos) {
+    elements.main.innerHTML =
+      "<p>Something went wrong. Please try again later.</p>";
     return;
   }
 
-  const { title, release, rating, overview, mediaType, mediaImageUrl } = extractMediaInfo(data);
+  const { title, release, rating, overview, mediaType, mediaImageUrl } =
+    extractMediaInfo(data);
 
-
-  const section = document.createElement('section');
-  section.classList.add('details-container');
+  const section = document.createElement("section");
+  section.classList.add("details-container");
   section.innerHTML = `
     <img class="details-image" src="${mediaImageUrl}" alt="${title}" />
     <div class="details-info">
@@ -28,22 +32,20 @@ async function renderMediaDetails(id, type = 'movie') {
     </div>
   `;
 
-
-  const credits = await fetchDetails(`/${type}/${id}/credits`);
   const cast = credits?.cast
-    ?.filter(member => member.profile_path)
+    ?.filter((member) => member.profile_path)
     ?.sort((a, b) => a.order - b.order)
     ?.slice(0, 5);
 
-  const castSection = document.createElement('div');
-  castSection.classList.add('details-slider-section');
+  const castSection = document.createElement("div");
+  castSection.classList.add("details-slider-section");
 
   if (cast && cast.length > 0) {
-    const heading = document.createElement('h3');
-    heading.textContent = 'Cast';
+    const heading = document.createElement("h3");
+    heading.textContent = "Cast";
 
-    const slider = document.createElement('div');
-    slider.classList.add('movie-slider');
+    const slider = document.createElement("div");
+    slider.classList.add("movie-slider");
 
     cast.forEach((person) => {
       const card = createPersonCard(person, person.character);
@@ -53,9 +55,8 @@ async function renderMediaDetails(id, type = 'movie') {
     castSection.append(heading, slider);
   }
 
-  const videos = await getMediaVideos(id, type);
   const trailer = videos.find(
-    video => video.type === "Trailer" && video.site === "YouTube"
+    (video) => video.type === "Trailer" && video.site === "YouTube"
   );
 
   let trailerSection = null;
@@ -64,12 +65,11 @@ async function renderMediaDetails(id, type = 'movie') {
   }
 
   if (trailerSection) {
-    elements.main.append(section, castSection, trailerSection)
+    elements.main.append(section, castSection, trailerSection);
   } else {
     elements.main.append(section, castSection);
   }
 }
-
 
 function extractMediaInfo(data) {
   return {
@@ -79,8 +79,8 @@ function extractMediaInfo(data) {
     overview: data.overview || "No description available.",
     mediaType: data.first_air_date ? "TV Show" : "Movie",
     mediaImageUrl: data.poster_path
-    ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
-    : './img/no-media.png',
+      ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
+      : "./img/no-media.png",
   };
 }
 
@@ -100,4 +100,4 @@ function createTrailerSection(trailer) {
   return section;
 }
 
-export {renderMediaDetails};
+export { renderMediaDetails };

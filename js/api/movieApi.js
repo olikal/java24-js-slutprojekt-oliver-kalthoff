@@ -1,15 +1,15 @@
 import { API_BASE_URL, BEARER_KEY } from "../utils/config.js";
 
 async function fetchMovies(endpoint) {
-  const hasQueryParams = endpoint.includes('?');
-  const separator = hasQueryParams ? '&' : '?';
+  const hasQueryParams = endpoint.includes("?");
+  const separator = hasQueryParams ? "&" : "?";
   const url = `${API_BASE_URL}${endpoint}${separator}language=en`;
 
   try {
-    const res = await fetch (url, {
-      method: 'GET',
+    const res = await fetch(url, {
+      method: "GET",
       headers: {
-        accept: 'application/json',
+        accept: "application/json",
         Authorization: `Bearer ${BEARER_KEY}`,
       },
     });
@@ -17,19 +17,18 @@ async function fetchMovies(endpoint) {
     const data = await res.json();
     return data.results || [];
   } catch (error) {
-    console.error(`Fetch failed: ${endpoint}`, error);
-    return [];
+    return null;
   }
-};
+}
 
 async function fetchDetails(endpoint) {
   const url = `${API_BASE_URL}${endpoint}?language=en`;
 
   try {
-    const res = await fetch (url, {
-      method: 'GET',
+    const res = await fetch(url, {
+      method: "GET",
       headers: {
-        accept: 'application/json',
+        accept: "application/json",
         Authorization: `Bearer ${BEARER_KEY}`,
       },
     });
@@ -37,10 +36,9 @@ async function fetchDetails(endpoint) {
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error(`Fetch failed: ${endpoint}`, error);
     return null;
   }
-};
+}
 
 async function getHomepageContent() {
   const popularMovies = await getPopularMovies();
@@ -50,16 +48,16 @@ async function getHomepageContent() {
   return {
     popularMovies,
     upcomingMovies,
-    popularTV
+    popularTV,
   };
 }
 
 async function getMovieTopList() {
-  return await fetchMovies(`/movie/top_rated`)
+  return await fetchMovies(`/movie/top_rated`);
 }
 
 async function getPopularMovies() {
-  return await fetchMovies(`/trending/movie/week`);
+  return await fetchMovies(`/movie/popular`);
 }
 
 async function getUpcomingMovies() {
@@ -72,9 +70,9 @@ async function getPopularTV() {
   // Exkluderar genrer: talkshows, dokumentärer och nyheter
   const excludedGenres = [10767, 99, 10763];
 
-  return allShows.filter(show => {
+  return allShows.filter((show) => {
     const genreIds = show.genre_ids || [];
-    const hasExcludedGenre = genreIds.some(id => excludedGenres.includes(id));
+    const hasExcludedGenre = genreIds.some((id) => excludedGenres.includes(id));
     return !hasExcludedGenre;
   });
 }
@@ -88,4 +86,14 @@ async function getMediaVideos(id, type = "movie") {
   return await fetchMovies(`/${type}/${id}/videos`);
 }
 
-export {fetchMovies, fetchDetails, getHomepageContent, getMovieTopList, getPopularMovies, getUpcomingMovies, getPopularTV, searchAll, getMediaVideos};
+export {
+  fetchMovies,
+  fetchDetails,
+  getHomepageContent,
+  getMovieTopList,
+  getPopularMovies,
+  getUpcomingMovies,
+  getPopularTV,
+  searchAll,
+  getMediaVideos,
+};

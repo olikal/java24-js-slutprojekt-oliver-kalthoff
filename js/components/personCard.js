@@ -1,11 +1,12 @@
 import { getTypeIcon } from "../utils/typeIcon.js";
-import { renderPersonDetails } from "../views/renderPersonDetails.js"
+import { renderPersonDetails } from "../views/renderPersonDetails.js";
 
 function createPersonCard(person, character = "") {
-  const { name, department, popularity, personImageUrl, typeIcon } = extractPersonCardInfo(person);
+  const { name, department, popularity, personImageUrl, typeIcon } =
+    extractPersonCardInfo(person);
 
-  const article = document.createElement('article');
-  article.classList.add('person-card');
+  const article = document.createElement("article");
+  article.classList.add("person-card");
 
   article.innerHTML = `
     <span class="media-type">${typeIcon}</span>
@@ -14,7 +15,7 @@ function createPersonCard(person, character = "") {
       <h2>${name}</h2>
       ${character ? `<p class="character-name">as ${character}</p>` : ""}
       <p>${department}</p>
-      <p>Popularity: ${popularity}</p>
+      <p>🔥${popularity}</p>
     </div>
   `;
 
@@ -28,13 +29,13 @@ function createPersonCard(person, character = "") {
 function extractPersonCardInfo(person) {
   return {
     name: person.name,
-    department: person.known_for_department || 'N/A',
-    popularity: person.popularity?.toFixed(1) || 'N/A',
+    department: person.known_for_department || "N/A",
+    popularity: person.popularity?.toFixed(1) || "N/A",
     personImageUrl: person.profile_path
       ? `https://image.tmdb.org/t/p/w500${person.profile_path}`
-      : 'img/no-person.png',
-    typeIcon: getTypeIcon('person'),
+      : "img/no-person.png",
+    typeIcon: getTypeIcon("person"),
   };
 }
 
-export {createPersonCard};
+export { createPersonCard };

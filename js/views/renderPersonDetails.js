@@ -4,7 +4,7 @@ import { prepareView } from "../utils/prepareView.js";
 
 async function renderPersonDetails(id) {
   prepareView();
-  const main = document.querySelector('main');
+  const main = document.querySelector("main");
 
   const data = await fetchDetails(`/person/${id}`);
   const credits = await fetchDetails(`/person/${id}/combined_credits`);
@@ -14,10 +14,11 @@ async function renderPersonDetails(id) {
     return;
   }
 
-  const { name, department, popularity, bio, personImageUrl } = extractPersonInfo(data);
+  const { name, department, popularity, bio, personImageUrl } =
+    extractPersonInfo(data);
 
-  const section = document.createElement('section');
-  section.classList.add('details-container');
+  const section = document.createElement("section");
+  section.classList.add("details-container");
   section.innerHTML = `
     <img class="details-image" src="${personImageUrl}" alt="${name}" />
     <div class="details-info">
@@ -31,7 +32,7 @@ async function renderPersonDetails(id) {
   const knownFor = getFilteredKnownFor(credits.cast);
   const knownForSection = createKnownForSection(knownFor);
 
-  main.append(section,knownForSection);
+  main.append(section, knownForSection);
 }
 
 function extractPersonInfo(data) {
@@ -49,7 +50,9 @@ function extractPersonInfo(data) {
 function getFilteredKnownFor(castArray) {
   const excludedGenres = [10767, 99, 10763];
   return castArray
-    ?.filter(item => !excludedGenres.some(genre => item.genre_ids?.includes(genre)))
+    ?.filter(
+      (item) => !excludedGenres.some((genre) => item.genre_ids?.includes(genre))
+    )
     ?.sort((a, b) => b.popularity - a.popularity)
     ?.slice(0, 5);
 }
@@ -81,4 +84,4 @@ function createKnownForSection(items) {
   return section;
 }
 
-export {renderPersonDetails};
+export { renderPersonDetails };

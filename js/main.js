@@ -15,25 +15,27 @@ function addEventListeners() {
     renderSearchResults(elements.searchInput.value);
     elements.searchInput.value = "";
   });
-  
-  [elements.logo, elements.navHome, elements.footerHome].forEach(element =>
+
+  [elements.logo, elements.navHome, elements.footerHome].forEach((element) =>
     element.addEventListener("click", (event) => {
       event.preventDefault();
       initHomepage();
     })
   );
-  
-  [elements.navTopMovies, elements.footerTopMovies].forEach(element => {
-    element.addEventListener("click", (event) =>{
+
+  [elements.navTopMovies, elements.footerTopMovies].forEach((element) => {
+    element.addEventListener("click", (event) => {
       event.preventDefault();
       renderTopRated();
     });
   });
-  
-  [elements.navPopularMovies, elements.footerPopularMovies].forEach(element => {
-    element.addEventListener("click", (event) =>{
-      event.preventDefault();
-      renderPopularMovies();
-    });
-  });
+
+  [elements.navPopularMovies, elements.footerPopularMovies].forEach(
+    (element) => {
+      element.addEventListener("click", (event) => {
+        event.preventDefault();
+        renderPopularMovies();
+      });
+    }
+  );
 }

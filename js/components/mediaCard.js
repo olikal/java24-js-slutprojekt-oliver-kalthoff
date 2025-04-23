@@ -1,40 +1,28 @@
+import { MediaItem } from "../models/MediaItem.js";
 import { getTypeIcon } from "../utils/typeIcon.js";
-import { renderMediaDetails } from "../views/renderMediaDetails.js"
+import { renderMediaDetails } from "../views/renderMediaDetails.js";
 
-function createMediaCard(media) {
-  const { title, rating, type, typeIcon, mediaImageUrl } = extractMediaCardInfo(media);
+function createMediaCard(mediaData) {
+  const media = new MediaItem(mediaData);
 
-  const article = document.createElement('article');
-  article.classList.add('media-card');
+  const article = document.createElement("article");
+  article.classList.add("media-card");
 
   article.innerHTML = `
-    <span class="media-type">${typeIcon}</span>
-    <img src="${mediaImageUrl}" alt="${title}"/>
-    <h2>${title}</h2>
+    <span class="media-type">${getTypeIcon(media.type)}</span>
+    <img src="${media.imageUrl}" alt="${media.title}"/>
+    <h2>${media.title}</h2>
     <p class="rating">
-    <span class="star">⭐</span> ${rating}
+    <span class="star">⭐</span> ${media.rating}
     </p>
+    <p><span class="hot">🔥</span> ${media.popularity}</p>
   `;
 
   article.addEventListener("click", () => {
-    renderMediaDetails(media.id, type);
+    renderMediaDetails(mediaData.id, media.type);
   });
 
   return article;
 }
 
-function extractMediaCardInfo(media) {
-  const type = media.media_type || (media.first_air_date ? "tv" : "movie");
-
-  return {
-    title: media.title || media.name,
-    rating: media.vote_average?.toFixed(1) || "N/A",
-    type,
-    typeIcon: getTypeIcon(type),
-    mediaImageUrl: media.poster_path
-      ? `https://image.tmdb.org/t/p/w500${media.poster_path}`
-      : "./img/no-media.png",
-  };
-}
-
-export {createMediaCard};
+export { createMediaCard };

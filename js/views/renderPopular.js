@@ -7,9 +7,16 @@ async function renderPopularMovies() {
   prepareView();
 
   const movies = await getPopularMovies();
+
+  if (!movies || movies.length === 0) {
+    elements.main.innerHTML =
+      "<p>Something went wrong. Please try again later.</p>";
+    return;
+  }
+
   const section = createMediaGridSection("Popular Movies", movies);
 
   elements.main.append(section);
 }
 
-export {renderPopularMovies};
+export { renderPopularMovies };

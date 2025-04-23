@@ -1,81 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Movie Database</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="./css/style.css" />
-		<script type="module" src="./js/main.js"></script>
-	</head>
-	<body>
-		<div class="wrapper">
-			<header id="header">
-				<a href="#" id="logo">
-					<img src="img/amdb-logo.png" alt="AMDB-logo" class="logo" />
-				</a>
-				<form id="search-form">
-					<input
-						type="text"
-						id="search-input"
-						placeholder="Looking for something to watch?"
-					/>
-					<button aria-label="Search">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="currentColor"
-							class="bi bi-search"
-							viewBox="0 0 16 16"
-						>
-							<path
-								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
-							/>
-						</svg>
-					</button>
-				</form>
-				<nav id="header-navigation">
-					<a href="#" id="nav-home">Home</a>
-					<a href="#" id="nav-top-movies">Top Movies</a>
-					<a href="#" id="nav-popular-movies">Popular Movies</a>
-				</nav>
-			</header>
-			<main></main>
-			<footer>
-				<section class="footer-columns">
-					<article>
-						<h3>Browse</h3>
-						<a href="#" id="footer-home">Home</a>
-						<a href="#" id="footer-top-movies">Top Movies</a>
-						<a href="#" id="footer-popular-movies">Popular Movies</a>
-					</article>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script type="module" src="./js/main.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header id="header">
+        <a href="#" id="logo">
+          <img src="img/amdb-logo.png" alt="AMDB-logo" class="logo" />
+        </a>
+        <form id="search-form" class="search-form">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Looking for something to watch?"
+          />
+          <button aria-label="Search">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+              />
+            </svg>
+          </button>
+          <select id="search-filter" aria-label="Filter">
+            <option value="all" selected>All</option>
+            <option value="movie">Movies/TV</option>
+            <option value="person">People</option>
+          </select>
+        </form>
+        <nav id="header-navigation">
+          <a href="#" id="nav-home">Home</a>
+          <a href="#" id="nav-top-movies">Top Movies</a>
+          <a href="#" id="nav-popular-movies">Popular Movies</a>
+        </nav>
+      </header>
+      <main></main>
+      <footer>
+        <section class="footer-columns">
+          <article>
+            <h3>Browse</h3>
+            <a href="#" id="footer-home">Home</a>
+            <a href="#" id="footer-top-movies">Top Movies</a>
+            <a href="#" id="footer-popular-movies">Popular Movies</a>
+          </article>
 
-					<article>
-						<h3>About</h3>
-						<p>
-							AMDB is a fan-made movie and TV database<br />
-							powered by TMDB.
-						</p>
-					</article>
+          <article>
+            <h3>About</h3>
+            <p>
+              AMDB is a fan-made movie and TV database<br />
+              powered by TMDB.
+            </p>
+          </article>
 
-					<article>
-						<h3>Connect</h3>
-						<a href="#">Instagram</a>
-						<a href="#">GitHub</a>
-						<a href="#">Contact</a>
-					</article>
-				</section>
-				<div class="footer-bottom">
-					<p>
-						&copy; 2025 AMDB. This product uses the TMDB API but is not endorsed
-						or certified by TMDB.
-					</p>
-				</div>
-			</footer>
-		</div>
-	</body>
+          <article>
+            <h3>Connect</h3>
+            <a href="#">Instagram</a>
+            <a href="#">GitHub</a>
+            <a href="#">Contact</a>
+          </article>
+        </section>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2025 AMDB. This product uses the TMDB API but is not endorsed
+            or certified by TMDB.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>
