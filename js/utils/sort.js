@@ -6,7 +6,7 @@ export function sortResults(results, method) {
     const nameA = (a.title || a.name || "").toLowerCase();
     const nameB = (b.title || b.name || "").toLowerCase();
     // Sorterar först på popularity, annars på rating,
-    // annars sorteras de som 0 för att slippa error
+    // annars sorteras de som 0 för att inte få error
     const popA = a.popularity || a.vote_average || 0;
     const popB = b.popularity || b.vote_average || 0;
 

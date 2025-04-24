@@ -17,6 +17,7 @@ async function renderSearchResults(query) {
   const filter = elements.searchFilter.value || "all";
   let data;
   try {
+    // Använder endpoint: "/search/multi"
     data = await searchAll(query);
   } catch (error) {
     elements.main.innerHTML =
